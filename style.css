@@ -53,9 +53,9 @@ body {
 .heart-container {
     position: relative;
     width: 100%;
-    max-width: 400px;
+    max-width: 320px;
     /* Zachování poměru stran (šířka 400px : výška 350px) */
-    aspect-ratio: 400 / 350; 
+    aspect-ratio: 320 / 350; 
     margin: 10px auto;
 }
 
