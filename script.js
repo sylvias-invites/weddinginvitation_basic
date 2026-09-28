@@ -152,8 +152,20 @@ function revealEverything() {
     // Schování textu nad srdíčkem
 
     const mainTitle = document.getElementById("main-title");
+    
+    if (mainTitle) {
 
-    // 1. Spuštění trvajících konfet (např. po dobu 3 sekund)
+        mainTitle.style.transition = "opacity 0.6s ease";
+
+        mainTitle.style.opacity = "0";
+
+        setTimeout(() => {
+            mainTitle.textContent = "Řekli jsme si ANO🩷";
+            mainTitle.style.opacity = "1";
+        }, 500);
+    }
+
+    // 2. Spuštění trvajících konfet (např. po dobu 3 sekund)
     if (typeof confetti === "function") {
         const diamond = confetti.shapeFromPath({
             path: 'M 0 -10 L 7 0 L 0 10 L -7 0 Z'
