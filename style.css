@@ -17,12 +17,16 @@
 
 body {
     background-color: var(--bg-color);
-   /* Opakující se textura třpytek */
-    background-image: url('glitter.png');
-    background-repeat: repeat;
-    background-size: 200px 200px; /* Nastavte hustotu třpytek podle potřeby */
-    /* Případně animace jemného pulzování jasu */
-    animation: glitterGlow 3s infinite alternate ease-in-out;
+    background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.95) 1px, transparent 1px),
+        radial-gradient(rgba(192, 192, 192, 0.6) 1.2px, transparent 1.2px),
+        radial-gradient(rgba(220, 225, 230, 0.5) 1.5px, transparent 1.5px);
+    
+    background-size: 35px 35px, 20px 20px, 50px 50px;
+    background-position: 0 0, 10px 10px, 25px 25px;
+    
+    /* Animace stříbrného blýskání */
+    animation: sparkle 4s infinite linear;
     color: var(--text-color);
     font-family: var(--font-body);
     display: flex;
