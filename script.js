@@ -30,7 +30,6 @@ function initCanvas() {
     const h = container ? (container.offsetHeight || 250) : 250;
     const dpr = window.devicePixelRatio || 1;
 
-    // Nastavení rozlišení canvasu pro ostré vykreslení (i na mobilech/Retina)
     canvas.width = w * dpr;
     canvas.height = h * dpr;
     canvas.style.width = w + "px";
@@ -38,13 +37,22 @@ function initCanvas() {
 
     ctx.scale(dpr, dpr);
 
-    // Záložní výplň (zlatá barva)
-    ctx.fillStyle = "#b8860b";
-    ctx.fillRect(0, 0, w, h);
-
-    // Vykreslení stíracího obrázku přes podklad
+    // 1. Nakreslíme obrázek růží
     if (heartImg.complete && heartImg.naturalWidth !== 0) {
         ctx.drawImage(heartImg, 0, 0, w, h);
+        
+        // 2. Přepneme na ořezový režim a přikryjeme ho zlatou barvou
+        // Zlatá barva se vykreslí POUZE tam, kde je obrázek růží neprůhledný
+        ctx.globalCompositeOperation = "source-in";
+        ctx.fillStyle = "#b8860b"; // Barva stírací vrstvy (zlatá)
+        ctx.fillRect(0, 0, w, h);
+        
+        // 3. Vracíme zpět výchozí režim pro budoucí mazání/stírání
+        ctx.globalCompositeOperation = "source-over";
+    } else {
+        // Pokud obrázek chybí, nakreslí se běžný obdélník
+        ctx.fillStyle = "#b8860b";
+        ctx.fillRect(0, 0, w, h);
     }
 }
 
