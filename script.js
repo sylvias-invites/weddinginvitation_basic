@@ -37,22 +37,9 @@ function initCanvas() {
 
     ctx.scale(dpr, dpr);
 
-    // 1. Nakreslíme obrázek růží
+    // Vykreslíme růžové srdíčko přímo jako stírací vrstvu
     if (heartImg.complete && heartImg.naturalWidth !== 0) {
         ctx.drawImage(heartImg, 0, 0, w, h);
-        
-        // 2. Přepneme na ořezový režim a přikryjeme ho zlatou barvou
-        // Zlatá barva se vykreslí POUZE tam, kde je obrázek růží neprůhledný
-        ctx.globalCompositeOperation = "source-in";
-        ctx.fillStyle = "#b8860b"; // Barva stírací vrstvy (zlatá)
-        ctx.fillRect(0, 0, w, h);
-        
-        // 3. Vracíme zpět výchozí režim pro budoucí mazání/stírání
-        ctx.globalCompositeOperation = "source-over";
-    } else {
-        // Pokud obrázek chybí, nakreslí se běžný obdélník
-        ctx.fillStyle = "#b8860b";
-        ctx.fillRect(0, 0, w, h);
     }
 }
 
