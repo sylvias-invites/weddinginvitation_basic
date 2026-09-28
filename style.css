@@ -105,9 +105,9 @@ body {
 /* Úprava nadpisu uvnitř srdce */
 .reveal-text h2 {
     font-family: var(--font-heading);
-    font-size: 1.15rem; /* Zmenšení písma, aby se vešlo */
+    font-size: 1.45rem; /* Zmenšení písma, aby se vešlo */
     color: var(--accent-color, #000000);
-    margin: 0 0 6px 0;
+    margin: 0 0 10px 0;
     line-height: 1.2;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
@@ -120,7 +120,7 @@ body {
 /* Úprava data uvnitř srdce */
 .reveal-text .date {
     font-family: var(--font-body);
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--accent-color, #000000);
     letter-spacing: 1px;
