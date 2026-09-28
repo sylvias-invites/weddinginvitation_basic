@@ -87,6 +87,7 @@ body {
     z-index: 2;
     cursor: pointer;
     touch-action: none;
+    transition: opacity 0.6s ease; /* Plynulé dotištění */
 }
 
 .instruction {
@@ -95,6 +96,7 @@ body {
     letter-spacing: 2px;
     color: #8e8e8e;
     margin-top: 25px;
+    transition: opacity 0.3s ease;
 }
 
 /* Tlačítko pro přechod dál */
