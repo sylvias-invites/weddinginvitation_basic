@@ -48,7 +48,7 @@ function initCanvas() {
 
         gCtx.drawImage(heartImg, 0, 0, w, h);
         gCtx.globalCompositeOperation = "source-in";
-        gCtx.fillStyle = "#d4af37";
+        gCtx.fillStyle = "#ffe7eb";
         gCtx.fillRect(0, 0, w, h);
 
         // 2. Nastavení zlatého podkladu pro text
