@@ -65,6 +65,7 @@ body {
     margin: 10px auto;
 }
 
+/* Kontejner pro text v srdíčku */
 .reveal-text {
     position: absolute;
     top: 0;
@@ -72,21 +73,43 @@ body {
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column; /* Seřadí nadpis a datum pod sebe */
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-family: var(--font-heading);
     
-    /* 2. Bílá barva textu pro dobrý kontrast na zlaté */
-    color: #ffffff; 
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    
-    /* 3. Úprava velikosti a odsazení písma */
-    font-size: 1.3rem; 
-    padding: 30px 40px; 
-    line-height: 1.25;
+    /* Vymezení prostoru uvnitř srdíčka */
+    padding: 25px 45px; 
+    box-sizing: border-box;
     z-index: 1;
+    background: transparent;
 }
+
+/* Úprava nadpisu uvnitř srdce */
+.reveal-text h2 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem; /* Zmenšení písma, aby se vešlo */
+    color: #ffffff;
+    margin: 0 0 6px 0;
+    line-height: 1.2;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* Odsazení odstavce */
+.reveal-text p {
+    margin: 0;
+}
+
+/* Úprava data uvnitř srdce */
+.reveal-text .date {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
 
 /* Stírací plátno nahoře */
 #scratch-canvas {
