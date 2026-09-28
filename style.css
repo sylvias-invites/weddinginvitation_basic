@@ -1,0 +1,172 @@
+/* ==========================================
+   1. ZÁKLADNÍ NASTAVENÍ A BAREVNOST
+   ========================================== */
+:root {
+    --bg-color: #fcfbf9;       /* Světlá, jemně krémová bílá */
+    --text-color: #4a4a4a;     /* Tmavě šedá pro čitelnost */
+    --accent-color: #d4af37;   /* Zlatavá akcentní barva */
+    --scratch-color: #dcd6cd;  /* Stírací stříbrno-zlatá vrstva */
+    --font-heading: 'Great Vibes', cursive;
+    --font-body: 'Montserrat', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* ==========================================
+   2. ÚVODNÍ STÍRACÍ STRÁNKA
+   ========================================== */
+.scratch-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.main-title {
+    font-family: var(--font-heading);
+    font-size: 3.8rem;
+    color: var(--accent-color);
+    margin-bottom: 25px;
+    font-weight: normal;
+}
+
+/* Kontejner pro srdíčko */
+.heart-container {
+    position: relative;
+    width: 280px;
+    height: 250px;
+    margin: 10px 0;
+}
+
+/* Text schovaný POD stírací vrstvou */
+.reveal-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    color: #8b0000;
+    padding: 20px;
+    line-height: 1.2;
+    z-index: 1;
+    clip-path: path("M 140 230 C 140 230 10 150 10 75 C 10 25 60 10 100 45 C 120 65 140 85 140 85 C 140 85 160 65 180 45 C 220 10 270 25 270 75 C 270 150 140 230 140 230 Z");
+    background-color: #fff0f2;
+}
+
+/* Plátno se stírací vrstvou nahoře */
+#scratch-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    cursor: pointer;
+    touch-action: none;
+}
+
+.instruction {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #8e8e8e;
+    margin-top: 25px;
+}
+
+/* Tlačítko pro přechod dál */
+.next-btn {
+    margin-top: 20px;
+    padding: 12px 28px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.next-btn.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ==========================================
+   3. VNITŘNÍ STRÁNKA (OZNÁMENÍ / TEXT)
+   ========================================== */
+.content-screen {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    max-width: 650px;
+    width: 90%;
+    margin: 40px auto;
+    padding: 40px 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.content-screen.active {
+    display: block;
+    opacity: 1;
+}
+
+.content-subtitle {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+.content-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+.details-box {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 25px 0;
+    margin: 25px 0;
+}
+
+.details-item {
+    margin: 10px 0;
+    font-size: 0.95rem;
+}
+
+.details-item strong {
+    color: var(--text-color);
+}
