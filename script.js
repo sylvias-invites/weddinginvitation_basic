@@ -27,7 +27,7 @@ heartImg.onerror = () => {
 
 function initCanvas() {
     // Načte přesné aktuální rozměry kontejneru z obrazovky
-    const w = container ? container.offsetWidth : 400;
+    const w = container ? container.offsetWidth : 320;
     const h = container ? container.offsetHeight : 350;
     const dpr = window.devicePixelRatio || 1;
 
