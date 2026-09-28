@@ -4,7 +4,7 @@
 :root {
     --bg-color: #fcfbf9;
     --text-color: #4a4a4a;
-    --accent-color: #d4af37;
+    --accent-color: #000000;
     --font-heading: 'Great Vibes', cursive;
     --font-body: 'Montserrat', sans-serif;
 }
@@ -109,7 +109,7 @@ body {
     margin-top: 20px;
     padding: 12px 28px;
     background-color: var(--accent-color);
-    color: white;
+    color: black;
     border: none;
     border-radius: 25px;
     font-family: var(--font-body);
