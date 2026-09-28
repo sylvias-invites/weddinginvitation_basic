@@ -69,18 +69,21 @@ body {
     text-align: center;
     font-family: var(--font-heading);
     
-    /* Zlatá barva, která se odhalí PO SETŘENÍ růží */
+    /* 1. Zlaté pozadí schované pod růžemi */
     background-color: #d4af37; 
-    color: #ffffff; 
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     
+    /* 2. Bílá barva textu pro dobrý kontrast na zlaté */
+    color: #ffffff; 
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    
+    /* 3. Úprava velikosti a odsazení písma */
     font-size: 1.3rem; 
-    padding: 25px 35px;
+    padding: 30px 40px; 
     line-height: 1.25;
     z-index: 1;
 
-    /* Důležité: Místo clip-path použijeme jemné zaoblení pozadí */
-    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    /* 4. Oříznutí ZLATÉHO PODKLADU přesně do tvaru srdce */
+    clip-path: path("M 140 230 C 140 230 10 150 10 75 C 10 25 60 10 100 45 C 120 65 140 85 140 85 C 140 85 160 65 180 45 C 220 10 270 25 270 75 C 270 150 140 230 140 230 Z");
 }
 
 /* Stírací plátno nahoře */
