@@ -149,16 +149,41 @@ function revealEverything() {
     if (hasRevealed) return;
     hasRevealed = true;
 
-    // 1. Spuštění konfet
+    // 1. Spuštění trvajících konfet (např. po dobu 3 sekund)
     if (typeof confetti === "function") {
-        confetti({
-            particleCount: 100,
-            spread: 70,
-            origin: { y: 1.2 },
-            colors: ['#cb7f8c', '#ffdce2', '#ffffff', '#fafafa'],
-            shapes: ['heart', diamond], // Kombinace srdíček a kosočtverců
-            scalar: 1.2
+        const diamond = confetti.shapeFromPath({
+            path: 'M 0 -10 L 7 0 L 0 10 L -7 0 Z'
         });
+
+        const duration = 3 * 1000; // Doba trvání v milisekundách (3 sekundy)
+        const animationEnd = Date.now() + duration;
+
+        const interval = setInterval(function() {
+            const timeLeft = animationEnd - Date.now();
+
+            if (timeLeft <= 0) {
+                return clearInterval(interval); // Po uplynutí času zastavíme generování
+            }
+
+            // Vystřelujeme v průběhu času menší dávky z obou stran
+            confetti({
+                particleCount: 12,
+                spread: 60,
+                origin: { x: 0.2, y: 0.6 }, // Výstřel zleva
+                colors: ['#cb7f8c', '#ffdce2', '#5B7065', '#ffffff'],
+                shapes: ['heart', diamond],
+                scalar: 1.2
+            });
+
+            confetti({
+                particleCount: 12,
+                spread: 60,
+                origin: { x: 0.8, y: 0.6 }, // Výstřel zprava
+                colors: ['#cb7f8c', '#ffdce2', '#5B7065', '#ffffff'],
+                shapes: ['heart', diamond],
+                scalar: 1.2
+            });
+        }, 200); // Každých 200 ms vyletí nová vlna
     }
 
     // 2. Postupné schování stírací vrstvy a instrukce
@@ -170,13 +195,10 @@ function revealEverything() {
         instruction.style.opacity = "0";
     }
 
+    // 3. Zobrazení tlačítka
     setTimeout(() => {
         canvas.style.display = "none";
-        
-        // Zobrazení tlačítka pro vstup na detail pozvánky
         if (nextBtn) {
-            nextBtn.style.opacity = "1";
-            nextBtn.style.pointerEvents = "auto";
             nextBtn.classList.add("visible");
         }
     }, 800);
