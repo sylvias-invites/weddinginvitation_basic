@@ -149,6 +149,10 @@ function revealEverything() {
     if (hasRevealed) return;
     hasRevealed = true;
 
+    // Schování textu nad srdíčkem
+
+    const mainTitle = document.getElementById("main-title");
+
     // 1. Spuštění trvajících konfet (např. po dobu 3 sekund)
     if (typeof confetti === "function") {
         const diamond = confetti.shapeFromPath({
