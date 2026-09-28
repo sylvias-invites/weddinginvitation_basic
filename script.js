@@ -14,31 +14,15 @@ heartImage.onload = function() {
     drawHeart();
 };
 
-// Funkce, která ořízne fotografii do tvaru srdíčka
 function drawHeart() {
-    ctx.save();
-
-    // Vytvoření masky ve tvaru srdíčka
-    ctx.beginPath();
-    ctx.moveTo(140, 230);
-    ctx.bezierCurveTo(140, 230, 10, 150, 10, 75);
-    ctx.bezierCurveTo(10, 25, 60, 10, 100, 45);
-    ctx.bezierCurveTo(120, 65, 140, 85, 140, 85);
-    ctx.bezierCurveTo(140, 85, 160, 65, 180, 45);
-    ctx.bezierCurveTo(220, 10, 270, 25, 270, 75);
-    ctx.bezierCurveTo(270, 150, 140, 230, 140, 230);
-    ctx.closePath();
-    ctx.clip(); // Aplikuje tvar srdíčka jako masku
-
-    // Vykreslení fotografie přes celé plátno
-    ctx.drawImage(heartImage, 0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     
-    ctx.restore();
+    // Vykreslení PNG obrázku
+    ctx.drawImage(heartImage, 0, 0, canvas.width, canvas.height);
 
     // Přepnutí do režimu gumování/stírání
     ctx.globalCompositeOperation = 'destination-out';
 }
-
 
 
 function getPos(e) {
