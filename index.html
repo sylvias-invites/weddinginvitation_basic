@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Svatba A&P</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Propojení na externí CSS soubor -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 1. ÚVODNÍ STRÁNKA (STÍRACÍ) -->
+    <div class="scratch-screen" id="scratch-screen">
+        <h1 class="main-title">Svatba A&P</h1>
+        
+        <div class="heart-container">
+            <!-- Text pod stírací vrstvou -->
+            <div class="reveal-text">
+                Zveme vás na svatbu!
+            </div>
+            
+            <!-- Stírací vrstva -->
+            <canvas id="scratch-canvas" width="280" height="250"></canvas>
+        </div>
+
+        <p class="instruction">Setři srdíčko</p>
+        
+        <button class="next-btn" id="next-btn" onclick="openDetails()">Vstoupit na pozvánku &rarr;</button>
+    </div>
+
+    <!-- 2. VNITŘNÍ STRÁNKA (DETAILNÍ INFORMACE) -->
+    <div class="content-screen" id="content-screen">
+        <h2 class="content-subtitle">Budeme se brát!</h2>
+        
+        <p class="content-text">
+            Srdečně vás zveme, abyste s námi prožili náš svatební den plný lásky, radosti a dobrého jídla.
+        </p>
+
+        <div class="details-box">
+            <div class="details-item"><strong>Kdy:</strong> 6. Června 2026 od 13:00</div>
+            <div class="details-item"><strong>Kde:</strong> Zámek Teplice</div>
+            <div class="details-item"><strong>Dresscode:</strong> Letní elegantní</div>
+        </div>
+
+        <p class="content-text" style="font-size: 0.9rem; font-style: italic;">
+            Prosíme o potvrzení účasti do 30. Dubna.
+        </p>
+    </div>
+
+    <!-- Propojení na externí JavaScript soubor -->
+    <script src="script.js"></script>
+</body>
+</html>
