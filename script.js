@@ -8,7 +8,7 @@ let isFinished = false;
 
 // 1. Načtení vlastní fotografie / obrázku
 const heartImage = new Image();
-heartImage.src = 'srdce.jpg'; // <-- název obrázku
+heartImage.src = 'srdce.png'; // <-- název obrázku
 
 heartImage.onload = function() {
     drawHeart();
