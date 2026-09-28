@@ -1,7 +1,10 @@
 const canvas = document.getElementById('scratch-canvas');
 const ctx = canvas.getContext('2d');
+const instruction = document.getElementById('instruction');
+const nextBtn = document.getElementById('next-btn');
+
 let isDrawing = false;
-let scratchedPixels = 0;
+let isFinished = false;
 
 // Vykreslení stíracího srdíčka
 function drawHeart() {
@@ -18,14 +21,14 @@ function drawHeart() {
     ctx.closePath();
     ctx.fill();
 
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
     ctx.font = '16px Montserrat';
-    ctx.fillText('✨', 130, 130);
+    ctx.fillText('✨', 132, 130);
 }
 
 drawHeart();
 
-// Nastavení režimu mazání (stírání)
+// Nastavení mazání
 ctx.globalCompositeOperation = 'destination-out';
 
 function getPos(e) {
@@ -39,21 +42,65 @@ function getPos(e) {
 }
 
 function scratch(e) {
-    if (!isDrawing) return;
+    if (!isDrawing || isFinished) return;
     e.preventDefault();
     const pos = getPos(e);
+    
     ctx.beginPath();
-    ctx.arc(pos.x, pos.y, 18, 0, Math.PI * 2);
+    ctx.arc(pos.x, pos.y, 22, 0, Math.PI * 2); // Velikost štětce
     ctx.fill();
 
     checkScratchPercentage();
 }
 
+// Výpočet procenta setření
 function checkScratchPercentage() {
-    scratchedPixels++;
-    if (scratchedPixels > 30) {
-        document.getElementById('next-btn').classList.add('visible');
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const pixels = imageData.data;
+    let transparentPixels = 0;
+
+    // Procházíme alfa kanál (každý 4. bajt)
+    for (let i = 3; i < pixels.length; i += 4) {
+        if (pixels[i] === 0) {
+            transparentPixels++;
+        }
     }
+
+    // Celková plocha srdíčka je cca 35 000 px z celkových 70 000 px plátna
+    const totalHeartArea = 35000; 
+    const percentage = (transparentPixels / totalHeartArea) * 100;
+
+    // Jakmile je setřeno z 50 %
+    if (percentage >= 50 && !isFinished) {
+        isFinished = true;
+        finishScratching();
+    }
+}
+
+// Akce po dosažení 50 %
+function finishScratching() {
+    // 1. Plynule dotřeme srdíčko (mizení plátna)
+    canvas.style.opacity = '0';
+    setTimeout(() => {
+        canvas.style.display = 'none';
+    }, 600);
+
+    // 2. Skryjeme nápis "Setři srdíčko" a zobrazíme tlačítko
+    instruction.style.opacity = '0';
+    nextBtn.classList.add('visible');
+
+    // 3. Vypustíme konfety!
+    launchConfetti();
+}
+
+// Slavnostní efekt konfet
+function launchConfetti() {
+    confetti({
+        particleCount: 80,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#d4af37', '#ffffff', '#ffb6c1'] // Zlatá, bílá, růžová
+    });
 }
 
 // Události myši a dotyku
