@@ -158,16 +158,6 @@ function revealEverything() {
         mainTitle.style.transition = "opacity 0.6s ease";
 
         mainTitle.style.opacity = "0";
-
-        setTimeout(() => {
-    mainTitle.textContent = "Řekli jsme si ANO🩷";
-    
-    // Změna velikosti a typu písma
-    mainTitle.style.fontSize = "1.5rem"; // Nastavení menší velikosti (původní byla větší)
-    mainTitle.style.fontFamily = "'Montserrat', sans-serif"; // Nebo jakékoliv jiné písmo (např. 'Playfair Display', 'Arial', atd.)
-    
-    mainTitle.style.opacity = "1";
-}, 500);
     }
 
     // 2. Spuštění trvajících konfet (např. po dobu 3 sekund)
