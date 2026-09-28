@@ -242,7 +242,23 @@ body {
     animation: walkAcross 16s linear infinite;
 }
 
-/* Animace pohybu z levé strany na pravou a zpět */
+/* Pixelová chodící kočička dole na obrazovce */
+.pixel-cat {
+    position: fixed;
+    bottom: 0;
+    left: -60px;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    z-index: 999;
+    pointer-events: none;
+    image-rendering: pixelated; /* Zachová ostré pixely */
+    
+    /* Animace pohybu napříč obrazovkou */
+    animation: walkAcross 16s linear infinite;
+}
+
+/* Animace přechodu zlevna doprava a zpět */
 @keyframes walkAcross {
     0% {
         left: -60px;
@@ -254,11 +270,11 @@ body {
     }
     50% {
         left: 100vw;
-        transform: scaleX(-1); /* Otočí se obličejem do protisměru */
+        transform: scaleX(-1); /* Otočí se do protisměru */
     }
     95% {
         left: -60px;
-        transform: scaleX(-1); /* Jde zpátky do leva */
+        transform: scaleX(-1); /* Jde zpátky doleva */
     }
     100% {
         left: -60px;
