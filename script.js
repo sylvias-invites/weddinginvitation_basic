@@ -132,7 +132,7 @@ function checkReveal() {
         const percentage = (cleared / (pixels.length / 4)) * 100;
 
         // Pokud je setřeno více než 45 %, odhalí se tlačítko dál
-        if (percentage > 65) {
+        if (percentage > 85) {
             revealEverything();
         }
     } catch (e) {
