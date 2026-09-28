@@ -143,8 +143,23 @@ function checkReveal() {
     }
 }
 
+let hasRevealed = false; // Pojistka proti opakovanému spuštění
+
 function revealEverything() {
-    // Postupné schování stírací vrstvy a instrukce
+    if (hasRevealed) return;
+    hasRevealed = true;
+
+    // 1. Spuštění konfet (zlaté, eukalyptové a bílé)
+    if (typeof confetti === "function") {
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#d4af37', '#5B7065', '#ffffff', '#A2B59F']
+        });
+    }
+
+    // 2. Postupné schování stírací vrstvy a instrukce
     canvas.style.transition = "opacity 0.8s ease";
     canvas.style.opacity = "0";
 
@@ -158,6 +173,8 @@ function revealEverything() {
         
         // Zobrazení tlačítka pro vstup na detail pozvánky
         if (nextBtn) {
+            nextBtn.style.opacity = "1";
+            nextBtn.style.pointerEvents = "auto";
             nextBtn.classList.add("visible");
         }
     }, 800);
