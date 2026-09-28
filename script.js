@@ -149,13 +149,15 @@ function revealEverything() {
     if (hasRevealed) return;
     hasRevealed = true;
 
-    // 1. Spuštění konfet (zlaté, eukalyptové a bílé)
+    // 1. Spuštění konfet
     if (typeof confetti === "function") {
         confetti({
             particleCount: 100,
             spread: 70,
-            origin: { y: 0.6 },
-            colors: ['#d4af37', '#5B7065', '#ffffff', '#A2B59F']
+            origin: { y: 1.2 },
+            colors: ['#cb7f8c', '#ffdce2', '#ffffff', '#fafafa'],
+            shapes: ['heart', diamond], // Kombinace srdíček a kosočtverců
+            scalar: 1.2
         });
     }
 
