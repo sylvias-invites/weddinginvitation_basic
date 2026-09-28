@@ -26,8 +26,9 @@ heartImg.onerror = () => {
 };
 
 function initCanvas() {
-    const w = container ? (container.offsetWidth || 280) : 280;
-    const h = container ? (container.offsetHeight || 250) : 250;
+    // Načte přesné aktuální rozměry kontejneru z obrazovky
+    const w = container ? container.offsetWidth : 400;
+    const h = container ? container.offsetHeight : 350;
     const dpr = window.devicePixelRatio || 1;
 
     canvas.width = w * dpr;
@@ -38,22 +39,19 @@ function initCanvas() {
     ctx.scale(dpr, dpr);
 
     if (heartImg.complete && heartImg.naturalWidth !== 0) {
-        // 1. Vytvoříme pomocné plátno v paměti pro zhotovení zlatého podkladu
+        // 1. Vytvoření zlatého podkladu v paměti
         const goldCanvas = document.createElement("canvas");
         goldCanvas.width = canvas.width;
         goldCanvas.height = canvas.height;
         const gCtx = goldCanvas.getContext("2d");
         gCtx.scale(dpr, dpr);
 
-        // Nakreslíme růže na pomocné plátno
         gCtx.drawImage(heartImg, 0, 0, w, h);
-        
-        // Přebarvíme průhledný otisk růží na čistou zlatou barvu
         gCtx.globalCompositeOperation = "source-in";
-        gCtx.fillStyle = "#d4af37"; // Barva zlatého podkladu
+        gCtx.fillStyle = "#d4af37";
         gCtx.fillRect(0, 0, w, h);
 
-        // 2. Nastavíme vytvořené zlaté srdce jako pozadí pod plátno (.reveal-text)
+        // 2. Nastavení zlatého podkladu pro text
         const revealText = document.querySelector(".reveal-text");
         if (revealText) {
             revealText.style.backgroundImage = `url(${goldCanvas.toDataURL()})`;
@@ -62,10 +60,18 @@ function initCanvas() {
             revealText.style.backgroundPosition = "center";
         }
 
-        // 3. Na hlavní stírací plátno nakreslíme originální růžové srdce
+        // 3. Vykreslení stírací vrstvy (růží)
         ctx.drawImage(heartImg, 0, 0, w, h);
     }
 }
+
+// Pojistka: při změně velikosti okna (např. otočení mobilu) se plátno přizpůsobí
+window.addEventListener("resize", () => {
+    // Překreslit pouze pokud ještě nebylo setřeno
+    if (canvas.style.display !== "none") {
+        initCanvas();
+    }
+});
 
 // Události pro stírání (myš i dotykové displeje)
 ["mousedown", "touchstart"].forEach(evt =>
@@ -125,8 +131,8 @@ function checkReveal() {
 
         const percentage = (cleared / (pixels.length / 4)) * 100;
 
-        // Pokud je setřeno více než 25 %, odhalí se tlačítko dál
-        if (percentage > 25) {
+        // Pokud je setřeno více než 45 %, odhalí se tlačítko dál
+        if (percentage > 45) {
             revealEverything();
         }
     } catch (e) {
