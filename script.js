@@ -37,7 +37,7 @@ function initCanvas() {
 
     ctx.scale(dpr, dpr);
 
-    // Vykreslíme růžové srdce z růží jako hlavní stírací vrstvu
+    // 1. Nakreslíme růžové srdce z růží
     if (heartImg.complete && heartImg.naturalWidth !== 0) {
         ctx.drawImage(heartImg, 0, 0, w, h);
     }
