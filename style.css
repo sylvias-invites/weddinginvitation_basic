@@ -52,8 +52,10 @@ body {
 /* Kontejner pro srdíčko */
 .heart-container {
     position: relative;
-    width: 280px;
-    height: 250px;
+    width: 100%;
+    max-width: 400px;
+    /* Zachování poměru stran (šířka 400px : výška 350px) */
+    aspect-ratio: 400 / 350; 
     margin: 10px auto;
 }
 
