@@ -37,8 +37,32 @@ function initCanvas() {
 
     ctx.scale(dpr, dpr);
 
-    // 1. Nakreslíme růžové srdce z růží
     if (heartImg.complete && heartImg.naturalWidth !== 0) {
+        // 1. Vytvoříme pomocné plátno v paměti pro zhotovení zlatého podkladu
+        const goldCanvas = document.createElement("canvas");
+        goldCanvas.width = canvas.width;
+        goldCanvas.height = canvas.height;
+        const gCtx = goldCanvas.getContext("2d");
+        gCtx.scale(dpr, dpr);
+
+        // Nakreslíme růže na pomocné plátno
+        gCtx.drawImage(heartImg, 0, 0, w, h);
+        
+        // Přebarvíme průhledný otisk růží na čistou zlatou barvu
+        gCtx.globalCompositeOperation = "source-in";
+        gCtx.fillStyle = "#d4af37"; // Barva zlatého podkladu
+        gCtx.fillRect(0, 0, w, h);
+
+        // 2. Nastavíme vytvořené zlaté srdce jako pozadí pod plátno (.reveal-text)
+        const revealText = document.querySelector(".reveal-text");
+        if (revealText) {
+            revealText.style.backgroundImage = `url(${goldCanvas.toDataURL()})`;
+            revealText.style.backgroundSize = "contain";
+            revealText.style.backgroundRepeat = "no-repeat";
+            revealText.style.backgroundPosition = "center";
+        }
+
+        // 3. Na hlavní stírací plátno nakreslíme originální růžové srdce
         ctx.drawImage(heartImg, 0, 0, w, h);
     }
 }
