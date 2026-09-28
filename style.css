@@ -227,38 +227,22 @@ body {
     color: var(--text-color);
 }
 
-/* Pixelová kočička dole na obrazovce */
+/* Postavička kočičky dole na obrazovce */
 .pixel-cat {
     position: fixed;
-    bottom: 5px; /* Malé odsazení od spodního okraje */
+    bottom: 5px; /* Vzdálenost od spodního okraje */
     left: -60px; /* Začíná schovaná vlevo mimo obrazovku */
-    width: 45px; /* Nastavení velikosti kočičky */
+    width: 45px;  /* Velikost kočičky */
     height: auto;
-    z-index: 999; /* Zaručí, že bude nad pozadím */
-    pointer-events: none; /* Aby přes ni šlo klikat */
-    image-rendering: pixelated; /* Zachová ostré pixely */
-    
-    /* Animace chůze tam a zpět */
-    animation: walkAcross 16s linear infinite;
-}
-
-/* Pixelová chodící kočička dole na obrazovce */
-.pixel-cat {
-    position: fixed;
-    bottom: 0;
-    left: -60px;
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
     z-index: 999;
-    pointer-events: none;
+    pointer-events: none; /* Umožní klikat přes kočičku */
     image-rendering: pixelated; /* Zachová ostré pixely */
     
-    /* Animace pohybu napříč obrazovkou */
+    /* Plynulý přechod zlevna doprava a zpět */
     animation: walkAcross 16s linear infinite;
 }
 
-/* Animace přechodu zlevna doprava a zpět */
+/* Animace pohybu a otáčení postavičky */
 @keyframes walkAcross {
     0% {
         left: -60px;
@@ -270,7 +254,7 @@ body {
     }
     50% {
         left: 100vw;
-        transform: scaleX(-1); /* Otočí se do protisměru */
+        transform: scaleX(-1); /* Otočí postavičku čumákem doleva */
     }
     95% {
         left: -60px;
