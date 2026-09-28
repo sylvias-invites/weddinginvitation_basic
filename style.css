@@ -226,3 +226,42 @@ body {
 .details-item strong {
     color: var(--text-color);
 }
+
+/* Pixelová kočička dole na obrazovce */
+.pixel-cat {
+    position: fixed;
+    bottom: 5px; /* Malé odsazení od spodního okraje */
+    left: -60px; /* Začíná schovaná vlevo mimo obrazovku */
+    width: 45px; /* Nastavení velikosti kočičky */
+    height: auto;
+    z-index: 999; /* Zaručí, že bude nad pozadím */
+    pointer-events: none; /* Aby přes ni šlo klikat */
+    image-rendering: pixelated; /* Zachová ostré pixely */
+    
+    /* Animace chůze tam a zpět */
+    animation: walkAcross 16s linear infinite;
+}
+
+/* Animace pohybu z levé strany na pravou a zpět */
+@keyframes walkAcross {
+    0% {
+        left: -60px;
+        transform: scaleX(1); /* Jde doprava */
+    }
+    45% {
+        left: 100vw;
+        transform: scaleX(1);
+    }
+    50% {
+        left: 100vw;
+        transform: scaleX(-1); /* Otočí se obličejem do protisměru */
+    }
+    95% {
+        left: -60px;
+        transform: scaleX(-1); /* Jde zpátky do leva */
+    }
+    100% {
+        left: -60px;
+        transform: scaleX(1);
+    }
+}
