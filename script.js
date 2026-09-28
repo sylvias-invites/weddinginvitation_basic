@@ -6,10 +6,19 @@ const nextBtn = document.getElementById('next-btn');
 let isDrawing = false;
 let isFinished = false;
 
-// Vykreslení stíracího srdíčka
-function drawHeart() {
-    ctx.fillStyle = '#dcd6cd';
+// 1. Načtení vlastní fotografie / obrázku
+const heartImage = new Image();
+heartImage.src = 'srdce.jpg'; // <-- název obrázku
 
+heartImage.onload = function() {
+    drawHeart();
+};
+
+// Funkce, která ořízne fotografii do tvaru srdíčka
+function drawHeart() {
+    ctx.save();
+
+    // Vytvoření masky ve tvaru srdíčka
     ctx.beginPath();
     ctx.moveTo(140, 230);
     ctx.bezierCurveTo(140, 230, 10, 150, 10, 75);
@@ -19,17 +28,18 @@ function drawHeart() {
     ctx.bezierCurveTo(220, 10, 270, 25, 270, 75);
     ctx.bezierCurveTo(270, 150, 140, 230, 140, 230);
     ctx.closePath();
-    ctx.fill();
+    ctx.clip(); // Aplikuje tvar srdíčka jako masku
 
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-    ctx.font = '16px Montserrat';
-    ctx.fillText('✨', 132, 130);
+    // Vykreslení fotografie přes celé plátno
+    ctx.drawImage(heartImage, 0, 0, canvas.width, canvas.height);
+    
+    ctx.restore();
+
+    // Přepnutí do režimu gumování/stírání
+    ctx.globalCompositeOperation = 'destination-out';
 }
 
-drawHeart();
 
-// Nastavení mazání
-ctx.globalCompositeOperation = 'destination-out';
 
 function getPos(e) {
     const rect = canvas.getBoundingClientRect();
