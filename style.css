@@ -57,7 +57,6 @@ body {
     margin: 10px auto;
 }
 
-/* Text pod stírací vrstvou */
 .reveal-text {
     position: absolute;
     top: 0;
@@ -69,11 +68,19 @@ body {
     justify-content: center;
     text-align: center;
     font-family: var(--font-heading);
-    font-size: 2.2rem;
-    color: #8b0000;
-    padding: 25px;
-    line-height: 1.2;
+    
+    /* Zlatá barva, která se odhalí PO SETŘENÍ růží */
+    background-color: #d4af37; 
+    color: #ffffff; 
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    
+    font-size: 1.3rem; 
+    padding: 25px 35px;
+    line-height: 1.25;
     z-index: 1;
+
+    /* Důležité: Místo clip-path použijeme jemné zaoblení pozadí */
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
 }
 
 /* Stírací plátno nahoře */
