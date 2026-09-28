@@ -10,6 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
+    <!-- Knihovna pro konfety -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
     <!-- Propojení na externí CSS soubor -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -29,7 +32,7 @@
             <canvas id="scratch-canvas" width="280" height="250"></canvas>
         </div>
 
-        <p class="instruction">Setři srdíčko</p>
+        <p class="instruction" id="instruction">Setři srdíčko</p>
         
         <button class="next-btn" id="next-btn" onclick="openDetails()">Vstoupit na pozvánku &rarr;</button>
     </div>
